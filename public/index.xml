@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>KnitKit Documents</title>
+    <link>http://funwo.ml/knitkit-doc/</link>
+    <description>Recent content on KnitKit Documents</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="http://funwo.ml/knitkit-doc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Data Types</title>
+      <link>http://funwo.ml/knitkit-doc/usage/data-type/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://funwo.ml/knitkit-doc/usage/data-type/</guid>
+      <description>Name Usage Description     UInt UInt(5.W) Unsigned Integer with 5-bit width   SInt SInt(3.W) Signed Integer with 3-bit width   Bool Bool() 1-bit unsigned integer, the same as UInt(1.W)    Literal    Constant or literal values are expressed using Scala integers or strings passed to constructors for the types:
+class LitValue1 extends RawModule { val out1 = IO(Output(UInt(5.W))) val out2 = IO(Output(UInt(4.</description>
+    </item>
+    
+    <item>
+      <title>Operators</title>
+      <link>http://funwo.ml/knitkit-doc/usage/operators/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://funwo.ml/knitkit-doc/usage/operators/</guid>
+      <description>Bitwise operators       Operation Explanation     val invertedX = ~x Bitwise NOT   val hiBits = x &amp;amp; &amp;quot;h_ffff_0000&amp;quot;.U Bitwise AND   val OROut = flagsIn | overflow Bitwise OR   val XOROut = flagsIn ^ toggle Bitwise XOR    class Bitwise_Ops extends RawModule { val x = IO(Input(UInt(32.W))) val invertedX = IO(Output(UInt(32.W))) val hiBits = IO(Output(UInt(32.W))) val OROut = IO(Output(UInt(32.</description>
+    </item>
+    
+    <item>
+      <title>Bundle</title>
+      <link>http://funwo.ml/knitkit-doc/usage/bundle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://funwo.ml/knitkit-doc/usage/bundle/</guid>
+      <description>Bundle is Map-like data structure for knitkit ground type, the name of value in generated verilog file is the key name by default, but you can use suggestName change it.
+For example:
+val io = IO(Bundle( &amp;#34;sign&amp;#34; -&amp;gt; Output(Bool()), &amp;#34;exponent&amp;#34; -&amp;gt; Bundle( &amp;#34;1&amp;#34; -&amp;gt; Output(UInt(8.W)), &amp;#34;2&amp;#34; -&amp;gt; Output(UInt(8.W)), ), &amp;#34;significand&amp;#34; -&amp;gt; Output(UInt(23.W)), )) Naming result should be:
+ io_sign = Output(Bool()) io_exponent_1 = Output(UInt( 8.W)) io_exponent_2 = Output(UInt( 8.W)) io_significand = Output(UInt(23.</description>
+    </item>
+    
+    <item>
+      <title>Combinational and Sequential Circuits</title>
+      <link>http://funwo.ml/knitkit-doc/usage/reg-wire/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://funwo.ml/knitkit-doc/usage/reg-wire/</guid>
+      <description>Wire Register  Reg Example Register Width Inference Example Register Initialize Example Register Initialize by Other Variable Example Register Initialize by other variable Example 2 Register Initialized Inferred Width by Literal Example Register Initialize Bundle Example Register Delayed by One Clock Cycle RegNextInit       Wire    Wires as hardware nodes to which one can assign values or connect other nodes.</description>
+    </item>
+    
+    <item>
+      <title>Conditional</title>
+      <link>http://funwo.ml/knitkit-doc/usage/conditional/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://funwo.ml/knitkit-doc/usage/conditional/</guid>
+      <description>When Statement  When Example ElseWhen Example Otherwise Example   Switch Statement  Enum as Conditional Literal as Conditional       When Statement    when, elsewhen and otherwise are similar to if, else if and else.
+Depends on variable&amp;rsquo;s type, generating different always block:
+   Variable type Generated Block     wire always @(*)   register synchronous reset always @(posedge clock)   register asynchronous reset at posedge always @(posedge clock or posedge reset)   register asynchronous reset at negedge always @(posedge clock or negedge reset)    When Example    class WhenCase extends RawModule { val clk = IO(Input(Clock())) setClock(clk) val sel1 = IO(Input(Bool())) val sel2 = IO(Input(Bool())) val out1 = IO(Output(UInt(3.</description>
+    </item>
+    
+    <item>
+      <title>BlackBox</title>
+      <link>http://funwo.ml/knitkit-doc/usage/blackbox/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://funwo.ml/knitkit-doc/usage/blackbox/</guid>
+      <description>BlackBoxes are used to instantiate externally defined modules. This construct is useful for hardware constructs that cannot be described in Scala and for connecting to FPGA or other IP not defined in
+class IBUFDS extends BlackBox ( Map( &amp;#34;DIFF_TERM&amp;#34; -&amp;gt; &amp;#34;TRUE&amp;#34;, &amp;#34;IOSTANDARD&amp;#34; -&amp;gt; &amp;#34;DEFAULT&amp;#34; ) ) { val O = IO(Output(Clock())) val I = IO(Input(Clock())) val IB = IO(Input(Clock())) } class IBUF extends BlackBox { val O = IO(Output(Clock())) val I = IO(Input(Clock())) val IB = IO(Input(Clock())) } class BlackBoxCase extends RawModule { val clk_125M = IO(Input(Clock())) val clk_25M = IO(Input(Clock())) val sel = IO(Input(Bool())) val clk_out = IO(Output(Clock())) val ibufds = Module(new IBUFDS) val ibuf = Module(new IBUF ) val u_ibufds = ibufds.</description>
+    </item>
+    
+    <item>
+      <title>Module Hierarchy</title>
+      <link>http://funwo.ml/knitkit-doc/usage/module-hierarchy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://funwo.ml/knitkit-doc/usage/module-hierarchy/</guid>
+      <description>Module&amp;rsquo;s declaration and submodule instantiation are two steps.
+If defines a module Mux2, use val mux2_1 = Module(new Mux2(1)) as declaration, val m0 = mux2_1() to instantiate submodule.
+Use map-like&amp;rsquo;s method to reference submodule&amp;rsquo;s port. val sel defines in module Mux2, use m0(&amp;quot;sel&amp;quot;) to reference port sel.
+class Mux2(width: Int) extends RawModule { override def desiredName = s&amp;#34;Mux2_${width}&amp;#34; val sel = IO(Input(UInt(1.W))) val in0 = IO(Input(UInt(width.W))) val in1 = IO(Input(UInt(width.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started</title>
+      <link>http://funwo.ml/knitkit-doc/usage/getting-started/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://funwo.ml/knitkit-doc/usage/getting-started/</guid>
+      <description>This page tells you how to get started with the KnitKit, including installation and default configuration.
+   Install requirements Project Directory Structure Simple Case     Install requirements    Install KnitKit with following shell command, if you would like to install it to system, use sudo and remove --user.
+# require Python versions: 3.6+ $ pip3 --user install knitkit Project Directory Structure    .</description>
+    </item>
+    
+  </channel>
+</rss>
